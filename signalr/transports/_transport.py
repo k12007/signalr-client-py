@@ -46,8 +46,11 @@ class Transport:
 
     def _handle_notification(self, message):
         if len(message) > 0:
-            data = json.loads(message)
-            self._connection.received.fire(**data)
+            try:
+                data = json.loads(message)
+                self._connection.received.fire(**data)
+            except Exception as e:
+                print(str(datetime.datetime.now())+': Json decode error: ' + str(e))
         gevent.sleep()
 
     def _get_url(self, action, **kwargs):
