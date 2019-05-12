@@ -64,6 +64,8 @@ class Connection:
 
     def close(self):
         gevent.kill(self.__greenlet)
+        while not self.__greenlet.dead:
+            gevent.sleep()
         self.__transport.close()
 
     def register_hub(self, name):

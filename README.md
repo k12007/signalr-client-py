@@ -4,7 +4,7 @@ Python client proxy for [SignalR](http://signalr.net/).
 
 # Major difference with the origin signalr-client
 
-Sometimes recieve json object that would error out the connection. Add try out in _handle_notification
+Sometimes receive json object that would error out the connection. Add try out in _handle_notification
 
 
 New _transport.py (Just ignore that message if it cant load it)
