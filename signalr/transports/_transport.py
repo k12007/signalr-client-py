@@ -2,6 +2,7 @@ from abc import abstractmethod
 import json
 import sys
 import datetime
+import traceback
 
 if sys.version_info[0] < 3:
     from urllib import quote_plus
@@ -51,6 +52,7 @@ class Transport:
                 data = json.loads(message)
                 self._connection.received.fire(**data)
             except Exception as e:
+                traceback.print_exc()
                 print(str(datetime.datetime.now())+': Json decode error: ' + str(e))
         gevent.sleep()
 
